@@ -1,0 +1,35 @@
+.loading {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading p {
+  text-align: center;
+}
+
+.container h1 {
+  border-bottom: 2px solid black;
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+.container div p {
+  text-align: center;
+  letter-spacing: 3px;
+  font-size: 18px;
+}
+
+.inner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.inner-container span {
+  height: 1px;
+  width: 300px;
+  background-color: silver;
+}
