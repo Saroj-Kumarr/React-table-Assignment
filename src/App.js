@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./index.css";
 import MaterialTable from "material-table";
 import { Toaster, toast } from "react-hot-toast";
@@ -10,7 +11,7 @@ function App() {
     {
       title: "ID",
       field: "id",
-      editable: "never", // ID should not be editable
+      editable: "never",
     },
     {
       title: "Name",
@@ -58,14 +59,23 @@ function App() {
           toast.error("Website is required");
           return "Website is required";
         }
-      const urlRegex =
-        /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
-      if (!urlRegex.test(rowData.website)) {
-        toast.error("Invalid URL format");
-        return "Invalid URL format";
-      }
+        const urlRegex =
+          /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+        if (!urlRegex.test(rowData.website)) {
+          toast.error("Invalid URL format");
+          return "Invalid URL format";
+        }
         return true;
       },
+    },
+    {
+      title: "Actions",
+      field: "actions",
+      render: (rowData) => (
+        <Link to={`/user/${rowData.id}`}>
+          <button>View</button>
+        </Link>
+      ),
     },
   ];
 
@@ -80,13 +90,6 @@ function App() {
 
     fetchUsersData();
   }, []);
-
-  if (users.length === 0)
-    return (
-      <div className="loading">
-        <p align="center">Loading...</p>
-      </div>
-    );
 
   return (
     <div className="container">
@@ -110,10 +113,9 @@ function App() {
                 (result) => result !== true
               );
               if (!hasError) {
-                const updatedRows = [
-                  ...users,
-                  { id: Math.floor(Math.random() * 100), ...newRow },
-                ];
+                const newId =
+                  users.length > 0 ? users[users.length - 1].id + 1 : 1; // Generate a new unique ID
+                const updatedRows = [...users, { id: newId, ...newRow }];
                 setTimeout(() => {
                   setUsers(updatedRows);
                   toast.success("Row added successfully");

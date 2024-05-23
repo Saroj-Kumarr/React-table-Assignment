@@ -33,3 +33,50 @@
   width: 300px;
   background-color: silver;
 }
+
+.button {
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.user-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-container div {
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.user-container div p span {
+  font-weight: bolder;
+}
+
+.inner-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.second-inner-container {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+@media screen and (max-width:480px) {
+  .inner-container span{
+  display:none;
+  }
+  .user-container{
+    width: 100%;
+  }
+}
